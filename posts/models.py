@@ -15,3 +15,4 @@ class Post(models.Model):
 
     def __str__(self):
         return self.titulo
+    imagen = models.ImageField(upload_to='posts/', null=True, blank=True)

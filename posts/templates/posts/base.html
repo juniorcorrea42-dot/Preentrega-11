@@ -4,28 +4,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <title>{% block title %}Blog de Energías Renovables{% endblock %}</title>    <!-- Enlace al archivo CSS estático -->
+    <title>{% block title %}Blog de Energías Renovables{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'posts/css/estilos.css' %}">
 </head>
 <body>
     <header class="header">
-        <h1>Blog RHC</h1>
+        <h1>Renovables Italia Blog</h1>
         <nav class="navbar">
             <a href="{% url 'inicio' %}">Inicio</a>
+            <a href="{% url 'lista_posts' %}">Publicaciones</a>
+            <a href="{% url 'crear_post' %}">Nuevo Post</a>
             <a href="{% url 'acerca' %}">Acerca de</a>
-            <a href="{% url 'contacto' %}">Contacto</a>
         </nav>
     </header>
 
     <main class="container">
-        <!-- Bloque donde las páginas hijas inyectarán su contenido -->
         {% block content %}
         {% endblock %}
     </main>
 
     <footer class="footer">
-        <p>&copy; Correa 2026 - Python</p>
+        <p>© 2026 Junior Correa - Posgrado en Energías Renovables</p>
     </footer>
 </body>
 </html>
-

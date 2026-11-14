@@ -1,0 +1,23 @@
+{% extends 'posts/base.html' %}
+
+{% block title %}{{ titulo_pagina }} | Blog de Energías Renovables{% endblock %}
+
+{% block content %}
+    <section>
+        <h2>{{ titulo_pagina }}</h2>
+
+        <!-- enctype="multipart/form-data" es OBLIGATORIO para que el formulario envíe archivos/imágenes -->
+        <form method="post" enctype="multipart/form-data" style="margin-top: 20px;">
+            {% csrf_token %}
+            
+            {{ form.as_p }}
+
+            <div style="margin-top: 20px;">
+                <button type="submit" style="background-color: #18bc9c; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; font-weight: bold;">
+                    {{ texto_boton }}
+                </button>
+                <a href="{% url 'lista_posts' %}" style="margin-left: 15px; color: #666; text-decoration: none;">Cancelar</a>
+            </div>
+        </form>
+    </section>
+{% endblock %}

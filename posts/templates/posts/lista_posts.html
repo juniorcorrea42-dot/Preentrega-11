@@ -1,36 +1,46 @@
-{% extends "posts/base.html" %}
+{% extends 'posts/base.html' %}
 
-{% block title %}Posts | Mi Blog{% endblock %}
+{% block title %}Publicaciones | Blog de Energías Renovables{% endblock %}
 
 {% block content %}
-    <h2>Listado de posts</h2>
+    <section>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+            <h2>Publicaciones del Blog</h2>
+            <a href="{% url 'crear_post' %}" style="background-color: #18bc9c; color: white; padding: 10px 15px; text-decoration: none; border-radius: 5px; font-weight: bold;">+ Crear nuevo post</a>
+        </div>
 
-    <div class="posts-container">
-        {% for post in posts %}
-            <article style="margin-bottom: 30px; border-bottom: 1px solid #eee; padding-bottom: 20px;">
-                <!-- Título con enlace al detalle -->
-                <h3>
-                    <a href="{% url 'detalle_post' post.id %}">
-                        {{ post.titulo }}
-                    </a>
-                </h3>
+        <div class="posts-container">
+            {% for post in posts %}
+                <article class="post-card" style="margin-bottom: 30px; border-bottom: 1px solid #ccc; padding-bottom: 20px;">
+                    <h3>
+                        <a href="{% url 'detalle_post' post.pk %}" style="color: #2c3e50; text-decoration: none;">
+                            {{ post.titulo }}
+                        </a>
+                    </h3>
+                    
+                    <p style="color: #666; font-size: 0.9em;">
+                        <strong>Autor:</strong> {{ post.autor }} | 
+                        <strong>Estado:</strong> {{ post.estado|title }} | 
+                        <strong>Fecha:</strong> {{ post.fecha_creacion|date:"d/m/Y H:i" }}
+                    </p>
 
-                <!-- Datos extra (Autor, Fecha y Estado) -->
-                <p style="color: #666; font-size: 0.9em;">
-                    Por: <strong>{{ post.autor }}</strong> | 
-                    Fecha: {{ post.fecha_creacion|date:"d/m/Y" }} | 
-                    Estado: <span>{{ post.estado }}</span>
-                </p>
+                    {% if post.imagen %}
+                        <div style="margin: 15px 0;">
+                            <img src="{{ post.imagen.url }}" alt="{{ post.titulo }}" style="max-width: 300px; height: auto; border-radius: 6px; display: block;">
+                        </div>
+                    {% endif %}
 
-                <!-- Contenido del post -->
-                <!-- El filtro |linebreaks mantiene los párrafos que escribas en el admin -->
-                <div class="post-contenido">
-                    {{ post.contenido|linebreaks }}
-                </div>
-            </article>
-        {% empty %}
-            <!-- Esto se muestra si no hay publicaciones en la base de datos -->
-            <p>No hay publicaciones disponibles en este momento.</p>
-        {% endfor %}
-    </div>
+                    <p>{{ post.contenido|truncatewords:30 }}</p>
+
+                    <div style="margin-top: 10px;">
+                        <a href="{% url 'detalle_post' post.pk %}" style="margin-right: 15px; color: #2980b9; font-weight: bold;">Leer más</a>
+                        <a href="{% url 'editar_post' post.pk %}" style="margin-right: 15px; color: #f39c12; font-weight: bold;">Editar</a>
+                        <a href="{% url 'eliminar_post' post.pk %}" style="color: #e74c3c; font-weight: bold;">Eliminar</a>
+                    </div>
+                </article>
+            {% empty %}
+                <p>No hay publicaciones disponibles en este momento.</p>
+            {% endfor %}
+        </div>
+    </section>
 {% endblock %}

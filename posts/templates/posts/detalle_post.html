@@ -1,15 +1,33 @@
-{% extends "posts/base.html" %}
+{% extends 'posts/base.html' %}
 
-{% block title %}{{ post.titulo }} | Mi Blog{% endblock %}
+{% block title %}{{ post.titulo }} | Blog de Energías Renovables{% endblock %}
 
 {% block content %}
     <article>
         <h2>{{ post.titulo }}</h2>
+        
+        <p style="color: #666; border-bottom: 1px solid #eee; padding-bottom: 10px;">
+            <strong>Autor:</strong> {{ post.autor }} | 
+            <strong>Estado:</strong> {{ post.estado|title }} | 
+            <strong>Publicado el:</strong> {{ post.fecha_creacion|date:"d/m/Y H:i" }}
+        </p>
 
-        <p><strong>Autor:</strong> {{ post.autor }}</p>
+        {% if post.imagen %}
+            <div style="margin: 20px 0; text-align: center;">
+                <img src="{{ post.imagen.url }}" alt="{{ post.titulo }}" style="max-width: 100%; max-height: 450px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+            </div>
+        {% endif %}
 
-        <p>{{ post.contenido }}</p>
+        <div style="line-height: 1.6; margin: 20px 0; white-space: pre-line;">
+            {{ post.contenido }}
+        </div>
+
+        <hr style="border: 0; border-top: 1px solid #ccc; margin: 25px 0;">
+
+        <div>
+            <a href="{% url 'editar_post' post.pk %}" style="background-color: #f39c12; color: white; padding: 8px 15px; text-decoration: none; border-radius: 4px; margin-right: 10px;">Editar post</a>
+            <a href="{% url 'eliminar_post' post.pk %}" style="background-color: #e74c3c; color: white; padding: 8px 15px; text-decoration: none; border-radius: 4px; margin-right: 10px;">Eliminar post</a>
+            <a href="{% url 'lista_posts' %}" style="color: #2c3e50; text-decoration: none; font-weight: bold;">← Volver al listado</a>
+        </div>
     </article>
-
-    <a href="{% url 'lista_posts' %}">Volver al listado</a>
 {% endblock %}
