@@ -1,0 +1,21 @@
+{% extends 'posts/base.html' %}
+
+{% block title %}Registrarse | Blog de Energías Renovables{% endblock %}
+
+{% block content %}
+    <section>
+        <h2>Crear una cuenta</h2>
+
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" style="background-color: #18bc9c; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; font-weight: bold;">
+                Registrarse
+            </button>
+        </form>
+
+        <p style="margin-top: 15px;">
+            ¿Ya tenés cuenta? <a href="{% url 'login' %}">Iniciá sesión acá</a>.
+        </p>
+    </section>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'posts/base.html' %}
+
+{% block title %}Editar Perfil | Blog de Energías Renovables{% endblock %}
+
+{% block content %}
+    <section>
+        <h2>Editar perfil</h2>
+
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" style="background-color: #18bc9c; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; font-weight: bold;">
+                Guardar cambios
+            </button>
+            <a href="{% url 'perfil' %}" style="margin-left: 15px; color: #666; text-decoration: none;">Cancelar</a>
+        </form>
+    </section>
+{% endblock %}
