@@ -1,14 +1,20 @@
 # Blog Django - Energías Renovables ♻️
 
-Aplicación web de blog desarrollada con Django, orientada a la divulgación sobre transición energética y energías renovables. En esta versión (**Preentrega 11**), se incorporó un sistema de **autenticación, gestión de usuarios, perfiles con avatar y protección de rutas del CRUD**.
+Aplicación web de blog desarrollada con Django, orientada a la divulgación sobre transición energética y energías renovables. En esta versión (**Entrega FINAL**), se incorporó un sistema de **autenticación, gestión de usuarios, perfiles con avatar y protección de rutas del CRUD**.
 
 ## 🚀 Cómo ejecutar el proyecto
 
-1. **Clonar el repositorio y entrar al directorio:**
+## Requisitos previos
+
+* **Python:** 3.12 o superior (necesario para la compatibilidad de Django y el resto de las dependencias).
+* **Git**
+
+## Instalación y configuración
+
+1. **Clonar el repositorio y acceder a la carpeta:**
    ```bash
-   git clone URL_DEL_REPOSITORIO
-   cd blog_consola
-   ```
+   git clone <https://github.com/juniorcorrea42-dot/Entrega-final>
+   cd <Entrega-final>
 
 2. **Crear y activar el entorno virtual:**
    * Windows (PowerShell):
@@ -41,7 +47,7 @@ source venv/bin/activate
 Se creó la aplicación `accounts` (registrada en `INSTALLED_APPS`) para centralizar la lógica de usuarios y perfiles, configurando las redirecciones en `blog_project/settings.py`:
 * `LOGIN_URL = 'login'`
 * `LOGIN_REDIRECT_URL = 'lista_posts'`
-* `LOGOUT_REDIRECT_URL = 'lista_posts'`
+* `LOGOUT_REDIRECT_URL = 'inicio'`
 
 ### Cómo funciona el registro
 * Disponible en `/accounts/registro/`.
